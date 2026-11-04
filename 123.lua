@@ -1,4 +1,4 @@
--- LocalScript: Troll Hub Pro (النسخة النهائية مع تحكم السرعة واختراق الجدران في التبويبات العلوية)
+-- LocalScript: Troll Hub Pro (النسخة النهائية - تم ضبط السرعة لتكون طبيعية تماماً عند التعطيل)
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local CoreGui = game:GetService("CoreGui")
@@ -572,7 +572,7 @@ doTpBtn.ZIndex = 2
 doTpBtn.Parent = contentFrame
 Instance.new("UICorner", doTpBtn).CornerRadius = UDim.new(0, 6)
 
--- البرمجة والوظائف الداخلية وتطبيق السرعة و Noclip
+-- البرمجة والوظائف الداخلية وتطبيق السرعة الديناميكية الحقيقية و Noclip
 RunService.RenderStepped:Connect(function()
     local char = LocalPlayer.Character
     if char and customName ~= "" then
@@ -596,13 +596,11 @@ RunService.RenderStepped:Connect(function()
         end)
     end
     
-    -- تطبيق السرعة
+    -- التعديل الجذري: السرعة لا تُعدل أبداً إلا إذا قام اللاعب بتشغيلها بالضغط على مفتاح التفعيل
     if char and char:FindFirstChildOfClass("Humanoid") then
         local hum = char:FindFirstChildOfClass("Humanoid")
         if speedEnabled then
             hum.WalkSpeed = customSpeed
-        else
-            hum.WalkSpeed = 16
         end
     end
     
